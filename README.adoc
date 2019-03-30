@@ -9,6 +9,43 @@ You can read more in https://medium.com/neo4j/graphing-brexit-bbe4314cf70[the bl
 This repository contains the scripts, data, and queries that I reference in the post.
 
 
+
+
+== Importing the data
+
+[source, cypher]
+----
+// Create one node per motion
+LOAD CSV WITH HEADERS FROM "https://github.com/mneedham/graphing-brexit/raw/master/data/motions.csv" AS row
+MERGE (m:Motion {id: toInteger(row.id)})
+SET m.name = row.name;
+
+// Create nodes for each MP and each party and connect them
+LOAD CSV WITH HEADERS FROM "https://github.com/mneedham/graphing-brexit/raw/master/data/mps.csv" AS row
+MERGE (person:Person {name: row.mp})
+MERGE (party:Party {name: row.party})
+MERGE (person)-[:MEMBER_OF]->(party);
+
+// Create a relationship between each MP and each motion
+LOAD CSV WITH HEADERS FROM "https://github.com/mneedham/graphing-brexit/raw/master/data/votes.csv" AS row
+MATCH (person:Person {name: row.person})
+MATCH (motion:Motion {id: toInteger(row.motionId)})
+CALL apoc.create.relationship(person, row.vote, {}, motion)
+YIELD rel
+RETURN rel;
+----
+
+== Mapping of ids to short names
+
+. Mr Clarke's motion J (Customs union)
+. Margaret Beckett's motion M (Confirmatory public vote)
+. Jeremy Corbyn's motion K (Labour's alternative plan)
+. Nick Boles's motion D (Common market 2.0)
+. Joanna Cherry's motion L (Revocation to avoid no deal)
+. Mr Baron's motion B (No deal)
+. Mr Fysh's motion O (Contingent preferential arrangements)
+. George Eustice's motion H (EFTA and EEA)
+
 == Other ideas
 
 * [ ] https://twitter.com/chriseyre2000/status/1111908414521638912[Infer new political groupings^]
