@@ -1,0 +1,24 @@
+= Graphing Brexit
+
+
+Along with many of my countrymen, I spent the night of 27th March 2019 watching UK MPs vote ‘No’ to a series of potential Brexit options, and then read analysis of how different individuals and parties had votes on various websites.
+While being very interesting, all the analysis felt very tabular to me, and I was curious whether we could learn anything new by putting the data into a graph.
+
+You can read more in https://medium.com/neo4j/graphing-brexit-bbe4314cf70[the blog post^] I wrote on this topic.
+
+This repository contains the scripts, data, and queries that I reference in the post.
+
+
+== Other ideas
+
+* [ ] https://twitter.com/chriseyre2000/status/1111908414521638912[Infer new political groupings^]
+* [ ] Add Theresa May's motions
+* [ ] Changes in how people vote in the Theresa May motions
+* [*] https://twitter.com/EastlondonDev/status/1111651874413969409[Cosine distance between motions and use that to try a ranking^]
+* [ ] https://twitter.com/davidbarton_/status/1111523034459000832[Similarity of motions^]
+* [ ] https://twitter.com/fluffymaccoy/status/1111542849751998464[Individual stance vs party affiliation^]
+* [ ] https://twitter.com/fluffymaccoy/status/1111542518280261632[Constituencies banded into leave/remain and strong/weak^]
+* [ ] https://twitter.com/mesirii/status/1111513552081293312[Clusters of MPs^]
+* [ ] Full graph with bloom to show clusters
+* [ ] Top k similarity graph
+* [ ] Geocode MPs and put them on a brexit map
