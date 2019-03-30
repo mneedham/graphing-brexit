@@ -9,9 +9,9 @@ You can read more in https://medium.com/neo4j/graphing-brexit-bbe4314cf70[the bl
 This repository contains the scripts, data, and queries that I reference in the post.
 
 
+== Importing the Guardian data
 
-
-== Importing the data
+Source: https://www.theguardian.com/uk-news/ng-interactive/2019/mar/27/how-did-your-mp-vote-in-the-indicative-votes
 
 [source, cypher]
 ----
@@ -35,6 +35,29 @@ YIELD rel
 RETURN rel;
 ----
 
+== Importing the CommonsVotes data
+
+Source: https://commonsvotes.digiminster.com/
+
+[source, cypher]
+----
+LOAD CSV FROM "https://github.com/mneedham/graphing-brexit/raw/master/data/commonsvotes/Division655.csv" AS row
+WITH collect(row) AS rows
+MERGE (motion:Motion {division: trim(split(rows[0][0], ":")[1]) })
+SET motion.name = rows[2][0]
+WITH motion, rows
+UNWIND rows[7..] AS row
+MERGE (person:Person {name: row[0]})
+MERGE (party:Party {name: row[1]})
+MERGE (constituency:Constituency {name: row[2]})
+MERGE (person)-[:MEMBER_OF]->(party)
+MERGE (person)-[:REPRESENTS]->(constituency)
+----
+
+== Importing the House of Commons Library data
+
+Source: https://commonslibrary.parliament.uk/parliament-and-elections/elections-elections/brexit-votes-by-constituency/
+
 == Mapping of ids to short names
 
 . Mr Clarke's motion J (Customs union)
@@ -51,7 +74,7 @@ RETURN rel;
 * [ ] https://twitter.com/chriseyre2000/status/1111908414521638912[Infer new political groupings^]
 * [ ] Add Theresa May's motions
 * [ ] Changes in how people vote in the Theresa May motions
-* [*] https://twitter.com/EastlondonDev/status/1111651874413969409[Cosine distance between motions and use that to try a ranking^]
+* [ ] https://twitter.com/EastlondonDev/status/1111651874413969409[Cosine distance between motions and use that to try a ranking^]
 * [ ] https://twitter.com/davidbarton_/status/1111523034459000832[Similarity of motions^]
 * [ ] https://twitter.com/fluffymaccoy/status/1111542849751998464[Individual stance vs party affiliation^]
 * [ ] https://twitter.com/fluffymaccoy/status/1111542518280261632[Constituencies banded into leave/remain and strong/weak^]
