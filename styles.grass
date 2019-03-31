@@ -1,0 +1,118 @@
+node {
+  diameter: 50px;
+  color: #A5ABB6;
+  border-color: #9AA1AC;
+  border-width: 2px;
+  text-color-internal: #FFFFFF;
+  font-size: 10px;
+}
+relationship {
+  color: #A5ABB6;
+  shaft-width: 1px;
+  font-size: 8px;
+  padding: 3px;
+  text-color-external: #000000;
+  text-color-internal: #FFFFFF;
+  caption: "<type>";
+}
+relationship.NEXT {
+  caption: "{cost}";
+}
+node.Place {
+  color: #68BDF6;
+  border-color: #5CA8DB;
+  text-color-internal: #FFFFFF;
+  defaultCaption: "<id>";
+  caption: "{id}";
+  diameter: 80px;
+}
+node.Page {
+  color: #6DCE9E;
+  border-color: #60B58B;
+  text-color-internal: #FFFFFF;
+  caption: "{name}";
+}
+node.* {
+  color: #FF756E;
+  border-color: #E06760;
+  text-color-internal: #FFFFFF;
+  defaultCaption: "<id>";
+}
+relationship.FOR {
+  color: #4C8EDA;
+  border-color: #2870c2;
+  text-color-internal: #FFFFFF;
+  shaft-width: 3px;
+  caption: "<type>";
+}
+relationship.AGAINST {
+  color: #DA7194;
+  border-color: #cc3c6c;
+  text-color-internal: #FFFFFF;
+  shaft-width: 3px;
+}
+relationship.DID_NOT_VOTE {
+  color: #DA7194;
+  border-color: #cc3c6c;
+  text-color-internal: #FFFFFF;
+  shaft-width: 1px;
+}
+node.Community {
+  color: #FFC454;
+  border-color: #d7a013;
+  text-color-internal: #604A0E;
+  defaultCaption: "<id>";
+  diameter: 80px;
+  caption: "{size}";
+}
+node.Motion {
+  color: #4C8EDA;
+  border-color: #2870c2;
+  text-color-internal: #FFFFFF;
+  defaultCaption: "<id>";
+  diameter: 80px;
+  caption: "{name}";
+}
+node.Person {
+  color: #C990C0;
+  border-color: #b261a5;
+  text-color-internal: #FFFFFF;
+  caption: "{name}";
+  diameter: 65px;
+}
+node.Party {
+  color: #DA7194;
+  border-color: #cc3c6c;
+  text-color-internal: #FFFFFF;
+  caption: "{name}";
+}
+node.Constituency {
+  color: #569480;
+  border-color: #447666;
+  text-color-internal: #FFFFFF;
+  caption: "{name}";
+}
+node.Conservative {
+  defaultCaption: "<id>";
+  color: #0087dc;
+  border-color: #0087dc;
+  text-color-internal: #FFFFFF;
+}
+node.Labour {
+  defaultCaption: "<id>";
+  color: #dc241f;
+  border-color: #dc241f;
+  text-color-internal: #FFFFFF;
+}
+node.Scottish National Party {
+  defaultCaption: "<id>";
+  color: #ffff00;
+  border-color: #ffff00;
+  text-color-internal: #604A0E;
+}
+node.Independent {
+  defaultCaption: "<id>";
+  color: #CCCCCC;
+  border-color: #CCCCCC;
+  text-color-internal: #604A0E;
+}
