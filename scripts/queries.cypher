@@ -53,7 +53,6 @@ YIELD nodes, similarityPairs, write, writeRelationshipType, writeProperty, min, 
 RETURN nodes, similarityPairs, write, writeRelationshipType, writeProperty, min, max, mean, p95;
 
 // Run Connected Components over that graph
-
 CALL algo.unionFind.stream('Person', 'SIMILAR', {direction: "BOTH"})
 YIELD nodeId,setId
 WITH setId, collect(algo.getNodeById(nodeId)) AS nodes
@@ -63,7 +62,46 @@ UNWIND nodes AS node
 MERGE (node)-[:IN_COMMUNITY]->(community);
 
 // Communities of MPs and which motions they voted for
-MATCH (c:Community)
+MATCH (c:Community {type: "Connected Components"})
+WITH c, size((c)<-[:IN_COMMUNITY]-()) AS size
+WHERE size > 10
+
+MATCH (c)<-[rel:IN_COMMUNITY]-(person)
+WITH c, rel, size, person
+ORDER BY person.pageviews DESC
+
+WITH c, collect({person: person, rel:rel })[..3] AS topPeople, size
+WITH c, topPeople, topPeople[0].person AS person, size
+WITH c, topPeople, size, [(person)-[:FOR]->(motion:Motion) | motion] AS votes
+       
+UNWIND votes AS vote       
+CALL apoc.create.vRelationship(c,"FOR",{},vote) yield rel
+RETURN *;
+
+// Similarities Graph based on FOR relationships
+
+MATCH (p:Person)-[:FOR]->(motion:Motion)
+WITH {item:id(p), categories: collect(id(motion))} as userData
+WITH collect(userData) as data
+CALL algo.similarity.jaccard(data, {
+  similarityCutoff: 1.0, 
+  write:true, 
+  writeRelationshipType: "SIMILAR_FOR"
+})
+YIELD nodes, similarityPairs, writeRelationshipType, writeProperty
+RETURN nodes, similarityPairs, writeRelationshipType, writeProperty;
+
+// Run Connected Components over that graph
+CALL algo.unionFind.stream('Person', 'SIMILAR_FOR', {direction: "BOTH"})
+YIELD nodeId,setId
+WITH setId, collect(algo.getNodeById(nodeId)) AS nodes
+MERGE (community:Community {id: setId, type: "Connected Components FOR"})
+WITH community, nodes
+UNWIND nodes AS node
+MERGE (node)-[:IN_COMMUNITY]->(community);
+
+// Communities of MPs and which motions they voted for
+MATCH (c:Community {type: "Connected Components FOR"})
 WITH c, size((c)<-[:IN_COMMUNITY]-()) AS size
 WHERE size > 10
 

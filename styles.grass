@@ -116,3 +116,17 @@ node.Independent {
   border-color: #CCCCCC;
   text-color-internal: #604A0E;
 }
+node.LiberalDemocrat {
+  defaultCaption: "<id>";
+  color: #FAA61A;
+  border-color: #FAA61A;
+  text-color-internal: #604A0E;
+}
+node.DemocraticUnionistParty {
+  defaultCaption: "<id>";
+  color: #D46A4C;
+  border-color: #D46A4C;
+  text-color-internal: #604A0E;
+}
+
+

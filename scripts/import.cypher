@@ -12,4 +12,8 @@ SET p.name = "Sinn Féin";
 
 load csv with headers from "https://github.com/mneedham/graphing-brexit/raw/master/data/pageviews.csv" AS row
 MATCH (p:Person {name: row.person})
-SET p.pageviews = toInteger(row.pageviews)Sinn Féin;;
+SET p.pageviews = toInteger(row.pageviews);
+
+match (p:Person)-[:MEMBER_OF]->(pa:Party)
+call apoc.create.addLabels(p, [apoc.text.replace(pa.name, " ", "")]) yield node
+RETURN count(*);
