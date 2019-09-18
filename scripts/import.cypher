@@ -10,9 +10,7 @@ WITH motion, rows
 UNWIND rows[7..] AS row
 // Create person, party, constituency, and corresponding rels
 MERGE (person:Person {name: row[0]})
-MERGE (party:Party {name: row[1]})
 MERGE (constituency:Constituency {name: row[2]})
-MERGE (person)-[:MEMBER_OF]->(party)
 MERGE (person)-[:REPRESENTS]->(constituency)
 WITH person, motion,  
      CASE WHEN row[3] = "Aye" THEN "FOR" 
@@ -49,3 +47,36 @@ UNWIND value.parties AS party
 MERGE (pa:Party {name: party.party})
 MERGE (person)-[memberOf:MEMBER_OF {start: date(party.start)}]->(pa)
 SET memberOf.end = date(party.end);
+
+call apoc.load.json("https://github.com/mneedham/graphing-brexit/raw/master/data/mp_events.json")
+YIELD value
+OPTIONAL MATCH (person:Person {id: value.personId})
+WITH value, person WHERE person is null
+match (other:Person) WHERE other.name contains split(value.name, " ")[-1]
+WITH value, person, other, 
+     apoc.text.sorensenDiceSimilarity(other.name, value.name) AS sorensen,
+     apoc.text.jaroWinklerDistance(other.name, value.name) AS leven
+ORDER BY value, apoc.coll.avg([leven, sorensen]) DESC
+WITH value, person, collect({other: other, sorensen:sorensen, leven: leven})[0] AS closest
+SET closest.other.id = value.personId;
+
+call apoc.load.json("https://github.com/mneedham/graphing-brexit/raw/master/data/mp_events.json")
+YIELD value
+OPTIONAL MATCH (person:Person {id: value.personId})
+WITH value, person WHERE person is null
+match (other:Person) where not(exists(other.id))
+WITH value, person, other, 
+     apoc.text.sorensenDiceSimilarity(other.name, value.name) AS sorensen,
+     apoc.text.jaroWinklerDistance(other.name, value.name) AS leven
+ORDER BY value, apoc.coll.avg([leven, sorensen]) DESC
+WITH value, person, collect({other: other, sorensen:sorensen, leven: leven})[0] AS closest
+SET closest.other.id = value.personId;
+
+MATCH (m:Motion)<-[vote]-(person:Person)
+WHERE m.date = date({year: 2019, month: 3, day:27})
+MATCH (person)-[memberOf:MEMBER_OF]->(party) 
+WHERE memberOf.start <= m.date AND (not(exists(memberOf.end)) OR m.date <= memberOf.end)
+WITH m, party, CASE WHEN type(vote) = "FOR" THEN 1 WHEN type(vote) = "DID_NOT_VOTE" THEN 0.5 ELSE 0 END AS score
+WITH m, party, avg(score) AS score, count(*) AS count
+MERGE (party)-[averageVote:AVERAGE_VOTE]->(m)
+SET averageVote.score = score;

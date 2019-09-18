@@ -116,3 +116,22 @@ WITH c, topPeople, size, [(person)-[:FOR]->(motion:Motion) | motion] AS votes
 UNWIND votes AS vote       
 CALL apoc.create.vRelationship(c,"FOR",{},vote) yield rel
 RETURN *;
+
+// Find votes on a motion grouped by the party the person represented at that time
+MATCH (p:Person)-[:FOR]->(motion:Motion {division: "439"})
+WITH p,  [(p)-[memberOf:MEMBER_OF]->(party) 
+          WHERE memberOf.start <= motion.date AND (not(exists(memberOf.end)) OR motion.date <= memberOf.end) | 
+          party.name][0] AS parties
+return parties, count(*) 
+ORDER BY count(*) DESC
+
+// People changing party allegiance
+MATCH (p:Person)-[memberOf:MEMBER_OF]->(party:Party)
+WHERE exists(memberOf.end)
+WITH p, memberOf, party
+MATCH (p)-[nextMemberOf:MEMBER_OF]->(newParty:Party)
+WHERE nextMemberOf.start > memberOf.end
+WITH p, memberOf, party, newParty, nextMemberOf
+ORDER By p, nextMemberOf.start 
+RETURN p.name, memberOf.end, party.name, collect(newParty.name)[0]
+ORDER BY memberOf.end
