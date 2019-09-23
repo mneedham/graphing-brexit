@@ -135,3 +135,26 @@ WITH p, memberOf, party, newParty, nextMemberOf
 ORDER By p, nextMemberOf.start 
 RETURN p.name, memberOf.end, party.name, collect(newParty.name)[0]
 ORDER BY memberOf.end
+
+
+// Which party did an MP vote most similarly to?
+MATCH (person:Person {name: "Boris Johnson"})-[vote]->(m:Motion {date: date({year: 2019, month: 3, day: 27})})
+MATCH (party:Party)-[ave:AVERAGE_VOTE]->(m)
+RETURN person.name,
+       party.name,
+       algo.similarity.cosine(
+         collect(CASE WHEN type(vote) = "FOR" THEN 1 WHEN type(vote) = "DID_NOT_VOTE" THEN 0.5 ELSE 0 END), 
+         collect(ave.score)) AS similarity
+ORDER BY similarity DESC
+
+// Evicted Conservative MPS
+MATCH (person:Person)-[vote]->(m:Motion {date: date({year: 2019, month: 3, day: 27})})
+WHERE (person)-[:MEMBER_OF {end: date({year: 2019, month: 9, day: 3})}]->(:Party {name: "Conservative"})
+MATCH (party:Party)-[ave:AVERAGE_VOTE]->(m) WHERE party.name <> "Speaker"
+WITH person, party,
+     algo.similarity.cosine(
+      collect(CASE WHEN type(vote) = "FOR" THEN 1 WHEN type(vote) = "DID_NOT_VOTE" THEN 0.5 ELSE 0 END), 
+      collect(ave.score)) AS similarity
+ORDER BY similarity DESC
+WITH person, collect({party: party.name, score: similarity}) AS parties
+RETURN person.name, parties[0].party, parties[0].score
