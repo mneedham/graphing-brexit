@@ -42,6 +42,7 @@
 {"personId": "25302", "name": "Liz Saville-Roberts", "parties": [{"party": "Plaid Cymru", "start": "2015-05-08"}]}
 {"personId": "10542", "name": "Keith Simpson", "parties": [{"party": "Conservative", "start": "1997-05-01"}]}
 {"personId": "10913", "name": "Michelle Gildernew", "parties": [{"party": "Sinn F\u00e9in", "start": "2001-06-07"}]}
+{"personId": "25282", "name": "Chris Davies", "parties": [{"party": "Conservative", "start": "2015-05-08", "end": "2019-06-21"}]}
 {"personId": "12004", "name": "Angus MacNeil", "parties": [{"party": "Scottish National Party", "start": "2005-05-05"}]}
 {"personId": "13852", "name": "Ian Paisley Jnr", "parties": [{"party": "DUP", "start": "2010-05-06"}]}
 {"personId": "25276", "name": "Lisa Cameron", "parties": [{"party": "Scottish National Party", "start": "2015-05-08"}]}
@@ -169,6 +170,7 @@
 {"personId": "25658", "name": "Stephen Morgan", "parties": [{"party": "Labour", "start": "2017-06-09"}]}
 {"personId": "11946", "name": "Mark Pritchard", "parties": [{"party": "Conservative", "start": "2005-05-05"}]}
 {"personId": "13933", "name": "Phil Wilson", "parties": [{"party": "Labour", "start": "2007-07-20"}]}
+{"personId": "25638", "name": "Fiona Onasanya", "parties": [{"party": "Labour", "start": "2017-06-09", "end": "2019-01-03"}, {"party": "Independent", "start": "2019-01-04", "end": "2019-05-01"}]}
 {"personId": "11971", "name": "Jo Swinson", "parties": [{"party": "Liberal Democrat", "start": "2005-05-05"}]}
 {"personId": "25390", "name": "Karin Smyth", "parties": [{"party": "Labour", "start": "2015-05-08"}]}
 {"personId": "24774", "name": "Lilian Greenwood", "parties": [{"party": "Labour", "start": "2010-05-06"}]}
@@ -229,9 +231,9 @@
 {"personId": "25314", "name": "Kirsty Blackman", "parties": [{"party": "Scottish National Party", "start": "2015-05-08"}]}
 {"personId": "24758", "name": "Andrew Jones", "parties": [{"party": "Conservative", "start": "2010-05-06"}]}
 {"personId": "10292", "name": "George Howarth", "parties": [{"party": "Labour", "start": "1986-11-13"}]}
-{"personId": "25348", "name": "Heidi Allen", "parties": [{"party": "Conservative", "start": "2015-05-08", "end": "2019-02-19"}, {"party": "Independent", "start": "2019-02-20"}]}
+{"personId": "25348", "name": "Heidi Allen", "parties": [{"party": "Conservative", "start": "2015-05-08", "end": "2019-02-19"}, {"party": "Independent", "start": "2019-02-20", "end": "2019-10-06"}, {"party": "Liberal Democrat", "start": "2019-10-07"}]}
 {"personId": "25430", "name": "Kelly Tolhurst", "parties": [{"party": "Conservative", "start": "2015-05-08"}]}
-{"personId": "11814", "name": "Angela Smith", "parties": [{"party": "Labour", "start": "2005-05-05", "end": "2019-02-17"}, {"party": "Independent", "start": "2019-02-18"}]}
+{"personId": "11814", "name": "Angela Smith", "parties": [{"party": "Labour", "start": "2005-05-05", "end": "2019-02-17"}, {"party": "Independent", "start": "2019-02-18", "end": "2019-09-06"}, {"party": "Liberal Democrat", "start": "2019-09-07"}]}
 {"personId": "11408", "name": "David Evennett", "parties": [{"party": "Conservative", "start": "2005-05-05"}]}
 {"personId": "10063", "name": "Tom Brake", "parties": [{"party": "Liberal Democrat", "start": "1997-05-01"}]}
 {"personId": "11541", "name": "Geoffrey Cox", "parties": [{"party": "Conservative", "start": "2005-05-05"}]}
@@ -262,7 +264,7 @@
 {"personId": "25353", "name": "Keir Starmer", "parties": [{"party": "Labour", "start": "2015-05-08"}]}
 {"personId": "10259", "name": "David Hanson", "parties": [{"party": "Labour", "start": "1992-04-09"}]}
 {"personId": "24907", "name": "Bob Stewart", "parties": [{"party": "Conservative", "start": "2010-05-06"}]}
-{"personId": "24789", "name": "Sam Gyimah", "parties": [{"party": "Conservative", "start": "2010-05-06", "end": "2019-09-03"}, {"party": "Independent", "start": "2019-09-04"}]}
+{"personId": "24789", "name": "Sam Gyimah", "parties": [{"party": "Conservative", "start": "2010-05-06", "end": "2019-09-03"}, {"party": "Independent", "start": "2019-09-04", "end": "2019-09-13"}, {"party": "Liberal Democrat", "start": "2019-09-14"}]}
 {"personId": "24904", "name": "Peter Aldous", "parties": [{"party": "Conservative", "start": "2010-05-06"}]}
 {"personId": "25280", "name": "Gavin Robinson", "parties": [{"party": "DUP", "start": "2015-05-08"}]}
 {"personId": "25381", "name": "Nigel Huddleston", "parties": [{"party": "Conservative", "start": "2015-05-08"}]}
@@ -330,7 +332,7 @@
 {"personId": "25604", "name": "Elisha McCallion", "parties": [{"party": "Sinn F\u00e9in", "start": "2017-06-09"}]}
 {"personId": "10397", "name": "Patrick McLoughlin", "parties": [{"party": "Conservative", "start": "1986-05-08"}]}
 {"personId": "25230", "name": "Liz McInnes", "parties": [{"party": "Labour", "start": "2014-10-10"}]}
-{"personId": "25619", "name": "Mike Hill", "parties": [{"party": "Labour", "start": "2017-06-09"}]}
+{"personId": "25619", "name": "Mike Hill", "parties": [{"party": "Labour", "start": "2017-06-09", "end": "2019-09-22"}, {"party": "Independent", "start": "2019-09-23"}]}
 {"personId": "25646", "name": "Emma Hardy", "parties": [{"party": "Labour", "start": "2017-06-09"}]}
 {"personId": "10415", "name": "Gordon Marsden", "parties": [{"party": "Labour", "start": "1997-05-01"}]}
 {"personId": "11531", "name": "Andrew Gwynne", "parties": [{"party": "Labour", "start": "2005-05-05"}]}
@@ -362,7 +364,7 @@
 {"personId": "10357", "name": "Ivan Lewis", "parties": [{"party": "Labour", "start": "1997-05-01", "end": "2017-11-22"}, {"party": "Independent", "start": "2017-11-23"}]}
 {"personId": "25683", "name": "Ben Bradley", "parties": [{"party": "Conservative", "start": "2017-06-09"}]}
 {"personId": "11360", "name": "Liam Byrne", "parties": [{"party": "Labour", "start": "2004-07-15"}]}
-{"personId": "10274", "name": "Stephen Hepburn", "parties": [{"party": "Labour", "start": "1997-05-01"}]}
+{"personId": "10274", "name": "Stephen Hepburn", "parties": [{"party": "Labour", "start": "1997-05-01", "end": "2019-10-07"}, {"party": "Independent", "start": "2019-10-08"}]}
 {"personId": "10884", "name": "Mark Field", "parties": [{"party": "Conservative", "start": "2001-06-07"}]}
 {"personId": "24871", "name": "Tracey Crouch", "parties": [{"party": "Conservative", "start": "2010-05-06"}]}
 {"personId": "25693", "name": "Kemi Badenoch", "parties": [{"party": "Conservative", "start": "2017-06-09"}]}
@@ -394,7 +396,7 @@
 {"personId": "10190", "name": "Nigel Evans", "parties": [{"party": "Conservative", "start": "1992-04-09"}]}
 {"personId": "25772", "name": "Lisa Forbes", "parties": [{"party": "Labour", "start": "2019-06-06"}]}
 {"personId": "24764", "name": "Paul Maynard", "parties": [{"party": "Conservative", "start": "2010-05-06"}]}
-{"personId": "24924", "name": "Luciana Berger", "parties": [{"party": "Labour", "start": "2010-05-06", "end": "2015-03-30"}, {"party": "Labour/Co-operative", "start": "2015-05-08", "end": "2019-02-17"}, {"party": "Independent", "start": "2019-02-18"}]}
+{"personId": "24924", "name": "Luciana Berger", "parties": [{"party": "Labour", "start": "2010-05-06", "end": "2015-03-30"}, {"party": "Labour/Co-operative", "start": "2015-05-08", "end": "2019-02-17"}, {"party": "Independent", "start": "2019-02-18", "end": "2019-09-04"}, {"party": "Liberal Democrat", "start": "2019-09-05"}]}
 {"personId": "13836", "name": "Francie Molloy", "parties": [{"party": "Sinn F\u00e9in", "start": "2013-03-08"}]}
 {"personId": "11804", "name": "Robert Goodwill", "parties": [{"party": "Conservative", "start": "2005-05-05"}]}
 {"personId": "25324", "name": "Stephen Gethins", "parties": [{"party": "Scottish National Party", "start": "2015-05-08"}]}

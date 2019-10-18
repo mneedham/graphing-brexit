@@ -36,10 +36,18 @@ load csv with headers from "https://github.com/mneedham/graphing-brexit/raw/mast
 MATCH (p:Person {name: row.person})
 SET p.pageviews = toInteger(row.pageviews);
 
-match (p:Person)-[:MEMBER_OF]->(pa:Party)
-call apoc.create.addLabels(p, [apoc.text.replace(pa.name, " ", "")]) yield node
-RETURN count(*);
+call apoc.load.json("https://github.com/mneedham/graphing-brexit/raw/master/data/mps_formatted.json")
+YIELD value
+MATCH (p:Person)
+WHERE p.name = value.name
+SET p.id = value.person_id;
 
+call apoc.load.json("https://github.com/mneedham/graphing-brexit/raw/master/data/mps_20190301_formatted.json")
+YIELD value
+MATCH (p:Person)
+WHERE p.name = value.name
+SET p.id = value.person_id;
+    
 call apoc.load.json("https://github.com/mneedham/graphing-brexit/raw/master/data/mp_events.json")
 YIELD value
 MATCH (person:Person {id: value.personId})
@@ -80,3 +88,7 @@ WITH m, party, CASE WHEN type(vote) = "FOR" THEN 1 WHEN type(vote) = "DID_NOT_VO
 WITH m, party, avg(score) AS score, count(*) AS count
 MERGE (party)-[averageVote:AVERAGE_VOTE]->(m)
 SET averageVote.score = score;
+
+// match (p:Person)-[:MEMBER_OF]->(pa:Party)
+// call apoc.create.addLabels(p, [apoc.text.replace(pa.name, " ", "")]) yield node
+// RETURN count(*);

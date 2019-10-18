@@ -1,5 +1,5 @@
 import unittest
-from read_mp import aggregate_events
+from aggregate_mp_events import aggregate_events
 
 class AggregateEvents(unittest.TestCase):
     def test_one_party(self):
